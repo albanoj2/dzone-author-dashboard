@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard.component';
+import { CountCardComponent } from './components/count-card.component';
 
 import { ArticlesService } from './services/articles.service';
 import { LikesService } from './services/likes.service';
@@ -12,7 +13,8 @@ import { LikesService } from './services/likes.service';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    CountCardComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@ import { Catalog } from '../domain/article';
 
 @Component({
     selector: 'dashboard',
-    template: 'Views: {{catalog.viewCount}}, Comments: {{catalog.commentsCount}}, Likes: {{catalog.likesCount}}'
+    templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
 

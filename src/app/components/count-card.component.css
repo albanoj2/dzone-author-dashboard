@@ -1,0 +1,13 @@
+.card-count {
+    text-align: center;
+}
+
+.card-count .count {
+    font-size: 75px;
+    margin-bottom: 10px;
+}
+
+.card-count .title {
+    text-transform: uppercase;
+    font-size: 12px;
+}
