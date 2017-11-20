@@ -19,10 +19,8 @@ export class LikesService {
 
         return this.http.get(this.getLikesUrl(articleId))
             .toPromise()
-            .then(response => {
-                console.log(response.json());
-                return Likes.createLikes(response.json().result.data); 
-        });
+            .then(response => Likes.createLikes(response.json().result.data)
+        );
     }
 
     private getLikesUrl(articleId: number): string {

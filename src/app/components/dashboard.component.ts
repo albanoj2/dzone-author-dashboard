@@ -16,4 +16,12 @@ export class DashboardComponent implements OnInit {
     ngOnInit() {
         this.articlesService.getCatalog(this.userId).then(catalog => this.catalog = catalog);
     }
+
+    public get isLoaded(): boolean {
+        return this.catalog !== undefined;
+    }
+
+    public get isLoading(): boolean {
+        return !this.isLoaded;
+    }
 }

@@ -1,3 +1,29 @@
-<count-card [count]="catalog.viewCount" title="Total views"></count-card> 
-<count-card [count]="catalog.commentsCount" title="Total comments"></count-card>
-<count-card [count]="catalog.likesCount" title="Total likes"></count-card>
+<div class="loading" *ngIf="isLoading">Loading...</div>
+<div class="loaded" *ngIf="isLoaded">
+    <count-card [count]="catalog.viewCount" title="Total views"></count-card>
+    <count-card [count]="catalog.likesCount" title="Total likes"></count-card>
+    <count-card [count]="catalog.commentsCount" title="Total comments"></count-card>
+
+    <dashboard-chart [catalog]='catalog'></dashboard-chart>
+
+    <table class="articles">
+        <thead>
+            <tr>
+                <td>Date</td>
+                <td>Title</td>
+                <td>Views</td>
+                <td>Comments</td>
+                <td>Likes</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="article" *ngFor="let article of catalog.articles">
+                <td class="date">{{article.date}}</td>
+                <td class="title">{{article.title}}</td>
+                <td class="views">{{article.viewsCount}}</td>
+                <td class="comments">{{article.commentsCount}}</td>
+                <td class="likes">{{article.likesCount}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
