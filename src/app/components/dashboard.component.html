@@ -1,29 +1,47 @@
 <div class="loading" *ngIf="isLoading">Loading...</div>
 <div class="loaded" *ngIf="isLoaded">
-    <count-card [count]="catalog.viewCount" title="Total views"></count-card>
-    <count-card [count]="catalog.likesCount" title="Total likes"></count-card>
-    <count-card [count]="catalog.commentsCount" title="Total comments"></count-card>
 
     <dashboard-chart [catalog]='catalog'></dashboard-chart>
+    <div class="chart-legend">
+        Some chart information
+    </div>
+    <div class="row-fluid cards">
+        <count-card [count]="catalog.viewsCount" title="Total views"></count-card>
+        <count-card [count]="catalog.likesCount" title="Total likes"></count-card>
+        <count-card [count]="catalog.commentsCount" title="Total comments"></count-card>
+        <count-card [count]="catalog.averageViewsPerArticle" title="Average views"></count-card>
+        <count-card [count]="catalog.averageLikesPerArticle" title="Average likes"></count-card>
+        <count-card [count]="catalog.averageCommentsPerArticle" title="Average comments"></count-card>
+    </div>
 
-    <table class="articles">
-        <thead>
-            <tr>
-                <td>Date</td>
-                <td>Title</td>
-                <td>Views</td>
-                <td>Comments</td>
-                <td>Likes</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="article" *ngFor="let article of catalog.articles">
-                <td class="date">{{article.date}}</td>
-                <td class="title">{{article.title}}</td>
-                <td class="views">{{article.viewsCount}}</td>
-                <td class="comments">{{article.commentsCount}}</td>
-                <td class="likes">{{article.likesCount}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="articles-list">
+        <table class="articles">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Views</th>
+                    <th>Comments</th>
+                    <th>Likes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="article" *ngFor="let article of catalog.articles">
+                    <td class="relative-to-average">
+                        <span [ngClass]="{'below-average': isArticleBelowAverage(article), 'above-average': isArticleAboveAverage(article)}">
+                            <span class="glyphicon glyphicon-triangle-bottom" *ngIf="isArticleBelowAverage(article)"></span>
+                            <span class="glyphicon glyphicon-triangle-top" *ngIf="isArticleAboveAverage(article)"></span>
+                            {{percentDifferenceFromAverage(article)}}%
+                        </span>
+                    </td>
+                    <td class="date">{{article.dateWithFormat('MMM YYYY')}}</td>
+                    <td class="title">{{article.title}}</td>
+                    <td class="views">{{article.viewsCount.toLocaleString('en-US')}}</td>
+                    <td class="comments">{{article.commentsCount.toLocaleString('en-US')}}</td>
+                    <td class="likes">{{article.likesCount.toLocaleString('en-US')}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

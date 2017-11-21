@@ -1,22 +1,18 @@
 .card-count {
-    color: #424242;
-    width: 400px;
-    text-align: center;
-    border-top: 1px solid #e9e9e9;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.card-count.top {
-    border-top: 0px;
+    padding: 5px 45px;
 }
 
 .card-count .count {
-    font-size: 62px;
+    font-size: 75px;
+    color: #00bb95;
+    font-weight: 100;
+    line-height: 1.1;
+    /* text-align: center; */
 }
 
 .card-count .title {
-    text-transform: uppercase;
-    font-size: 13px;
-    padding: 8px;
+    text-transform: capitalize;
+    font-size: 18px;
+    font-weight: 700;
+    color: #878787;
 }

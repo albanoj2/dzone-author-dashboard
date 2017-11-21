@@ -1,0 +1,48 @@
+.chart-legend {
+    padding: 25px;
+    margin-top: 10px;
+    font-size: 18px;
+    text-align: center;
+    color: #878787;
+}
+
+.cards {
+    border-top: 1px solid #f1f1f1;
+    padding-top: 20px;
+}
+
+.articles-list {
+    margin-top: 60px;
+    background-color: #e1eaee;
+    padding: 55px;
+}
+
+.articles-list .articles {
+    background-color: #fff;
+    width: 100%;
+    font-size: 18px;
+}
+
+.articles-list .articles thead {
+    background-color: #f0f4f6;
+}
+
+.articles-list .articles thead th {
+    padding: 25px;
+}
+
+.articles-list .articles tbody td {
+    padding: 10px 25px;
+}
+
+.articles-list .articles tbody tr:nth-child(odd){
+    background-color: #fbfcfd;
+}
+
+.below-average {
+    color: #dd4949;
+}
+
+.above-average {
+    color: #00bb84;
+}

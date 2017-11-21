@@ -7,12 +7,17 @@ html,body {
 }
 
 html {
-    font-family: Roboto;
     padding: 0px;
     margin: 0px;
 }
 
 body {
+    font-family: Roboto;
     padding: 0px;
     margin: 0px;
+    font-weight: 800;
+}
+
+.row-fluid {
+    display: flex;
 }

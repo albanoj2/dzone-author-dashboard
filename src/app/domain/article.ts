@@ -1,11 +1,12 @@
 import { Likes } from './like';
+import * as moment from 'moment'
 
 
 export class Catalog {
 
     constructor(private _articles: Article[]) {}
 
-    public get viewCount() {
+    public get viewsCount() {
         return this._articles
             .map(article => article.viewsCount)
             .reduce((sum, current) => sum + current);
@@ -25,6 +26,18 @@ export class Catalog {
 
     public get articles() {
         return this._articles;
+    }
+
+    public get averageViewsPerArticle() {
+        return Math.round(this.viewsCount / this.articles.length);
+    }
+
+    public get averageCommentsPerArticle() {
+        return Math.round(this.commentsCount / this.articles.length);
+    }
+
+    public get averageLikesPerArticle() {
+        return Math.round(this.likesCount / this.articles.length);
     }
 }
 
@@ -80,5 +93,9 @@ export class Article {
 
     public get title() {
         return this._title;
+    }
+
+    public dateWithFormat(format: string) {
+        return moment(this._date).format(format);
     }
 }

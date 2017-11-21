@@ -5,7 +5,7 @@ import * as moment from 'moment'
 @Component({
     selector: 'dashboard-chart',
     template: `
-    <div style="display: block">
+    <div class="chart" style="display: block">
         <canvas baseChart
             [datasets]="chartData"
             [labels]="chartLabels"
@@ -16,21 +16,26 @@ import * as moment from 'moment'
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)"></canvas>
     </div>
-    `
+    `,
+    styles: [`
+    .chart {
+        height: 500px;
+    }
+    `]
 })
 export class DashboardChartComponent {
 
     private chartMapper = new CatalogChartMapper();
     private chartLabels: string[] = [];
-    private chartType = 'bar';
+    private chartType = 'line';
     private chartLegend = true;
     private chartData: any[] = [];
-    private chartOptions: any = {scaleShowVerticalLines: false, responsive: true};
-    // private chartColors = ['#0479e3'];
+    private chartOptions: any = {scaleShowVerticalLines: false, responsive: true, maintainAspectRatio: false};
     private chartColors = [
         {
-            backgroundColor: '#0479e3',
-            borderColor: 'rgba(148,159,177,1)',
+            backgroundColor: '#319ee3',
+            borderColor: 'rgba(148,159,177,0)',
+            border: '0px',
             pointBackgroundColor: '#0479e3',
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
@@ -40,7 +45,7 @@ export class DashboardChartComponent {
 
     @Input()
     private set catalog(catalog: Catalog) {
-        let chartData = this.chartMapper.getChartData(catalog);
+        let chartData = this.chartMapper.getChartData(catalog, 12);
         this.chartLabels = chartData.labels;
         this.chartData = chartData.chartData;
     }
@@ -56,28 +61,29 @@ export class DashboardChartComponent {
 
 class CatalogChartMapper {
 
-    public getChartData(catalog: Catalog): CatalogChartData {
+    public getChartData(catalog: Catalog, numberOfMonths: number): CatalogChartData {
         let chartData = new CatalogChartData();
 
         // chartData.viewsCountData = [100, 200, 800, 500, 600, 300];
-        chartData.viewsCountData = this.generateViews(catalog);
+        chartData.viewsCountData = this.generateViews(catalog, numberOfMonths);
         chartData.commentsCountData = [55, 59, 80, 81, 56, 55];
         chartData.likesCountData = [65, 59, 80, 81, 56, 55];
         // chartData.labels = ['Jun 2017', 'Jul 2017', 'Aug 2017', 'Sep 2017', 'Oct 2017', 'Nov 2017'];
-        chartData.labels = this.generateLabels(catalog);
+        chartData.labels = this.generateLabels(catalog, numberOfMonths);
 
         return chartData;
     }
 
-    private generateLabels(catalog: Catalog) {
-        return this.generateMonths(catalog).map(month => month.format('MMM YYYY'));
+    private generateLabels(catalog: Catalog, numberOfMonths: number) {
+        return this.generateMonths(catalog, numberOfMonths).map(month => month.format('MMM YYYY'));
     }
 
-    private generateMonths(catalog: Catalog) {
+    private generateMonths(catalog: Catalog, numberOfMonths: number) {
         let startDate: Date = new Date(Math.min.apply(null, catalog.articles.map(article => article.date)));
         
-        let start = moment(startDate);
+        // let start = moment(startDate);
         let end = moment(new Date()).add(1, 'month');
+        let start = moment(new Date()).subtract(numberOfMonths - 1, 'month');
         let current = start.clone();
 
         let months = [];
@@ -90,11 +96,11 @@ class CatalogChartMapper {
         return months;
     }
 
-    private generateViews(catalog: Catalog) {
+    private generateViews(catalog: Catalog, numberOfMonths: number) {
 
         let views = [];
 
-        this.generateMonths(catalog).forEach(month => {
+        this.generateMonths(catalog, numberOfMonths).forEach(month => {
             let sum = 0;
             
             catalog.articles.forEach(article => {
