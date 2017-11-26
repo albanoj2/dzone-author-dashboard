@@ -6,6 +6,33 @@
     color: #878787;
 }
 
+.loaded {
+    margin: 0px;
+}
+
+.dashboard {
+    background-color: #ebebeb;
+}
+
+.chart {
+    margin: 40px;
+}
+
+.chart h1 {
+    font-family: Roboto;
+    font-size: 50px;
+}
+
+.chart .summary-header {
+    color: #4e4e4e;
+    margin-top: 40px;
+    border-bottom: 2px solid #4e4e4e;
+}
+
+.chart .chart-options {
+    text-align: right;
+}
+
 .cards {
     border-top: 1px solid #f1f1f1;
     padding-top: 20px;

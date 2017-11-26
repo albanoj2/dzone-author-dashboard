@@ -1,7 +1,30 @@
 <div class="loading" *ngIf="isLoading">Loading...</div>
 <div class="loaded" *ngIf="isLoaded">
 
-    <dashboard-chart [catalog]='catalog'></dashboard-chart>
+    <div class="dashboard">
+        <div class="chart">
+            <h1>Dashboard</h1>
+
+            <div class="summary-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Summary</h2>
+                    </div>
+                    <div class="chart-options col-md-6">
+                        <div class="btn-group">
+                            <button type="button" class="chart-option btn btn-secondary btn-md">All-time</button>
+                            <button type="button" class="chart-option btn btn-secondary btn-md">1 Year</button>
+                            <button type="button" class="chart-option btn btn-secondary btn-md">6 Months</button>
+                            <button type="button" class="chart-option btn btn-secondary btn-md">3 Months</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <dashboard-chart [catalog]='catalog'></dashboard-chart>
+        </div>
+    </div>
+
     <div class="chart-legend">
         Some chart information
     </div>

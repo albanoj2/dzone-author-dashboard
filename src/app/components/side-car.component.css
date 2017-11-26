@@ -1,0 +1,21 @@
+.author {
+    font-weight: 100;
+    padding-top: 40px;
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 200px;
+}
+
+.author img.avatar {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+.author .name {
+    color: #f7f7f7;
+    font-size: 23px;
+    margin-top: 25px;
+    text-align: center;
+}

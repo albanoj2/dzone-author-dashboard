@@ -12,10 +12,10 @@ html {
 }
 
 body {
-    font-family: Roboto !important;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-weight: normal;
     padding: 0px;
     margin: 0px;
-    font-weight: 800;
 }
 
 .row-fluid {
