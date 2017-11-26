@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ArticlesService } from '../services/articles.service';
 import { Catalog, Article } from '../domain/article';
 
@@ -10,12 +10,14 @@ import { Catalog, Article } from '../domain/article';
 export class DashboardComponent implements OnInit {
 
     private catalog: Catalog;
-    private userId = 1144561;
+
+    @Input()
+    private authorId;
 
     constructor(private articlesService: ArticlesService) {}
 
     ngOnInit() {
-        this.articlesService.getCatalog(this.userId).then(catalog => this.catalog = catalog);
+        this.articlesService.getCatalog(this.authorId).then(catalog => this.catalog = catalog);
     }
 
     public get isLoaded(): boolean {

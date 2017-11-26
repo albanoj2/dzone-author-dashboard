@@ -30,7 +30,19 @@ export class DashboardChartComponent {
     private chartType = 'line';
     private chartLegend = true;
     private chartData: any[] = [];
-    private chartOptions: any = {scaleShowVerticalLines: false, responsive: true, maintainAspectRatio: false};
+    private chartOptions: any = {
+        scaleShowVerticalLines: false, 
+        responsive: true, 
+        maintainAspectRatio: false,
+        scales: {
+            xAxes: [{
+                ticks: {
+                    autoSkip: false,
+                    maxTicksLimit: 12
+                }
+            }]
+        }
+    };
     private chartColors = [
         {
             backgroundColor: '#319ee3',
@@ -45,7 +57,7 @@ export class DashboardChartComponent {
 
     @Input()
     private set catalog(catalog: Catalog) {
-        let chartData = this.chartMapper.getChartData(catalog, 12);
+        let chartData = this.chartMapper.getChartData(catalog, 36);
         this.chartLabels = chartData.labels;
         this.chartData = chartData.chartData;
     }

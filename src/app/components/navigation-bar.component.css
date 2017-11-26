@@ -1,0 +1,32 @@
+.navigation {
+    background-color: #222222;
+    height: 60px;
+    display: flex;
+}
+
+.navigation .side-car {
+    background-color: #111111;
+    flex: 0 0 20%;
+}
+
+.navigation .side-car .title {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 25px;
+    height: 60px;
+    line-height: 60px;
+    padding-left: 20px;
+    color: #f5f5f5;
+}
+
+.navigation .side-car .title .primary {
+    font-weight: bold;
+}
+
+.navigation .side-car .title .secondary {
+    font-weight: normal;
+    color: #818181;
+}
+
+.navigation .application {
+    flex: 1 1;
+}

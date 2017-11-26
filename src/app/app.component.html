@@ -1,3 +1,9 @@
-<div class="dashboard">
-    <dashboard></dashboard>
+<navigation-bar></navigation-bar>
+<div class="application">
+    <div class="side-car">
+        <side-car [authorId]="authorId"></side-car>
+    </div>
+    <div class="dashboard">
+        <dashboard [authorId]="authorId"></dashboard>
+    </div>
 </div>

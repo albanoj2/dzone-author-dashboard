@@ -1,4 +1,12 @@
+.application {
+    display: flex;
+}
+
+.side-car {
+    background-color: #222222;
+    flex: 0 0 20%;
+}
+
 .dashboard {
-    width: 75%;
-    float: right;
+    flex: 1 1;
 }

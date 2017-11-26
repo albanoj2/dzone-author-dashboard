@@ -11,8 +11,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 @Injectable()
 export class LikesService {
 
-    private articlesUrl = 'https://dzone.com/services/widget/article-listV2/list?author={}&sort=newest';
-
     constructor(private http: Http) {}
 
     public getLikes(articleId: number): Promise<Likes> {
