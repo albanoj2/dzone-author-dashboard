@@ -11,7 +11,7 @@
 }
 
 .dashboard {
-    background-color: #ebebeb;
+    /* background-color: #ebebeb; */
 }
 
 .chart {
@@ -31,6 +31,19 @@
 
 .chart .chart-options {
     text-align: right;
+    padding-top: 10px;
+}
+
+.chart .chart-options .chart-option {
+    padding: 10px 20px;
+    background-color: #d8d8d8;
+    border-color: #cccccc;
+}
+
+.chart .chart-options .chart-option:hover {
+    background-color: #5f5f5f;
+    border-color: #494949;
+    color: #fff;
 }
 
 .cards {

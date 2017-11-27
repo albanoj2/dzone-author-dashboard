@@ -1,0 +1,26 @@
+.chart {
+    height: 500px;
+}
+
+.summary-header {
+    color: #4e4e4e;
+    margin-top: 40px;
+    border-bottom: 2px solid #4e4e4e;
+}
+
+.chart-options {
+    text-align: right;
+    padding-top: 10px;
+}
+
+.chart-options .chart-option {
+    padding: 10px 20px;
+    background-color: #d8d8d8;
+    border-color: #cccccc;
+}
+
+.chart-options .chart-option:hover {
+    background-color: #5f5f5f;
+    border-color: #494949;
+    color: #fff;
+}
