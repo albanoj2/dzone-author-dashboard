@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { Catalog } from '../domain/article';
-import * as moment from 'moment'
+import { BaseChartDirective } from 'ng2-charts/ng2-charts';
+import * as moment from 'moment';
 
 export enum TimeScale {
     ALL_TIME, ONE_YEAR, SIX_MONTHS, THREE_MONTHS;
@@ -12,6 +13,8 @@ export enum TimeScale {
     styleUrls: ['dashboard-chart.component.css']
 })
 export class DashboardChartComponent {
+
+    @ViewChild(BaseChartDirective) chart: BaseChartDirective;
 
     private chartMapper = new CatalogChartMapper();
     private timeScale = TimeScale.ALL_TIME;
@@ -56,7 +59,12 @@ export class DashboardChartComponent {
     }
 
     private updateChart(data: CatalogChartData) {
-        this.chartLabels = data.labels;
+        
+        this.chartLabels.length = 0;
+        data.labels.forEach(label => {
+            this.chartLabels.push(label);
+        });
+
         this.chartData = data.chartData;
     }
    
@@ -80,6 +88,7 @@ export class DashboardChartComponent {
     public setToOneYear() {
         this.updateChartForMonths(12);
         this.timeScale = TimeScale.ONE_YEAR;
+        this.chart.chart.refresh();
     }
 
     public isOneYear() {
