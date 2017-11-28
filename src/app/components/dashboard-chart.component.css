@@ -19,7 +19,8 @@
     border-color: #cccccc;
 }
 
-.chart-options .chart-option:hover {
+.chart-options .chart-option:hover,
+.chart-options .chart-option.selected {
     background-color: #5f5f5f;
     border-color: #494949;
     color: #fff;

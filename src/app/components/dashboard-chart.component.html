@@ -8,16 +8,19 @@
                 <button type="button" 
                     class="chart-option btn btn-secondary btn-md" 
                     (click)="setToAllTime()"
-                    [ngClass]="{'selected': timeScale == TimeScale.ALL_TIME}">All-time</button>
+                    [ngClass]="{'selected': isAllTime()}">All-time</button>
                 <button type="button" 
                     class="chart-option btn btn-secondary btn-md" 
-                    (click)="setToOneYear()">1 Year</button>
+                    (click)="setToOneYear()"
+                    [ngClass]="{'selected': isOneYear()}">1 Year</button>
                 <button type="button" 
                     class="chart-option btn btn-secondary btn-md" 
-                    (click)="setToSixMonths()">6 Months</button>
+                    (click)="setToSixMonths()"
+                    [ngClass]="{'selected': isSixMonths()}">6 Months</button>
                 <button type="button" 
                     class="chart-option btn btn-secondary btn-md" 
-                    (click)="setToThreeMonths()">3 Months</button>
+                    (click)="setToThreeMonths()"
+                    [ngClass]="{'selected': isThreeMonths()}">3 Months</button>
             </div>
         </div>
     </div>

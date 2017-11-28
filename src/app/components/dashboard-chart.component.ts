@@ -73,9 +73,17 @@ export class DashboardChartComponent {
         this.timeScale = TimeScale.ALL_TIME;
     }
 
+    public isAllTime() {
+        return this.timeScale == TimeScale.ALL_TIME;
+    }
+
     public setToOneYear() {
         this.updateChartForMonths(12);
         this.timeScale = TimeScale.ONE_YEAR;
+    }
+
+    public isOneYear() {
+        this.timeScale == TimeScale.ONE_YEAR;
     }
 
     public setToSixMonths() {
@@ -83,9 +91,17 @@ export class DashboardChartComponent {
         this.timeScale = TimeScale.SIX_MONTHS;
     }
 
+    public isSixMonths() {
+        this.timeScale == TimeScale.SIX_MONTHS;
+    }
+
     public setToThreeMonths() {
         this.updateChartForMonths(3);
         this.timeScale = TimeScale.THREE_MONTHS;
+    }
+
+    public isThreeMonths() {
+        this.timeScale == TimeScale.THREE_MONTHS;
     }
 }
 
@@ -148,21 +164,34 @@ class CatalogChartMapper {
     private generateViews(catalog: Catalog, numberOfMonths: number) {
 
         let views = [];
-        let previousViews = 0;
+        let startMonth = moment(new Date()).subtract(numberOfMonths, 'month');
+        let viewsBeforePeriod = 0;
+        let viewsLastMonth = 0;
 
-        this.generateMonths(catalog, numberOfMonths).forEach(month => {
-            let sum = 0;
+        catalog.articles.forEach(article => {
+
+            if (moment(article.date).isBefore(startMonth, 'month')) {
+                viewsBeforePeriod += article.viewsCount;
+            }
+        })
+
+        this.generateMonths(catalog, numberOfMonths)
             
-            catalog.articles.forEach(article => {
-                let date = moment(article.date);
-                if (date.isSame(month, 'month')) {
-                    sum += article.viewsCount;
-                }
-            });
+            .forEach(month => {
+                let sum = 0;
+                
+                catalog.articles.forEach(article => {
+                    let date = moment(article.date);
+                    if (date.isSame(month, 'month')) {
+                        sum += article.viewsCount;
+                    }
+                });
 
-            views.push(sum + previousViews);
-            previousViews += sum;
-        });
+                let viewsThisMonth = sum + viewsBeforePeriod;
+
+                views.push(viewsThisMonth);
+                viewsBeforePeriod = viewsThisMonth;
+            });
 
         return views;
     }
