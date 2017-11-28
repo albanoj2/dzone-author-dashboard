@@ -1,6 +1,5 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Catalog } from '../domain/article';
-import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 import * as moment from 'moment';
 
 export enum TimeScale {
@@ -14,8 +13,6 @@ export enum TimeScale {
 })
 export class DashboardChartComponent {
 
-    @ViewChild(BaseChartDirective) chart: BaseChartDirective;
-
     private chartMapper = new CatalogChartMapper();
     private timeScale = TimeScale.ALL_TIME;
     private _catalog: Catalog;
@@ -24,26 +21,26 @@ export class DashboardChartComponent {
     private chartLegend = true;
     private chartData: any[] = [];
     private chartOptions: any = {
-        scaleShowVerticalLines: false, 
+        scaleShowVerticalLines: true, 
         responsive: true, 
         maintainAspectRatio: false,
         scales: {
             xAxes: [{
                 ticks: {
-                    autoSkip: false,
+                    autoSkip: true,
                     maxTicksLimit: 12
                 }
             }]
-        }
+        },
     };
     private chartColors = [
         {
-            backgroundColor: '#319ee3',
-            borderColor: 'rgba(148,159,177,0)',
-            border: '0px',
-            pointBackgroundColor: '#0479e3',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
+            backgroundColor: 'rgba(49, 158, 227, 0.2)',
+            borderColor: 'rgba(49, 158, 227, 1)',
+            border: '1px',
+            pointBackgroundColor: 'rgba(49, 158, 227, 1)',
+            pointBorderColor: 'rgba(49, 158, 227, 1)',
+            pointHoverBackgroundColor: 'rgba(49, 158, 227, 1)',
             pointHoverBorderColor: 'rgba(148,159,177,0.8)'
           }
     ]
@@ -88,11 +85,10 @@ export class DashboardChartComponent {
     public setToOneYear() {
         this.updateChartForMonths(12);
         this.timeScale = TimeScale.ONE_YEAR;
-        this.chart.chart.refresh();
     }
 
     public isOneYear() {
-        this.timeScale == TimeScale.ONE_YEAR;
+        return this.timeScale == TimeScale.ONE_YEAR;
     }
 
     public setToSixMonths() {
@@ -101,7 +97,7 @@ export class DashboardChartComponent {
     }
 
     public isSixMonths() {
-        this.timeScale == TimeScale.SIX_MONTHS;
+        return this.timeScale == TimeScale.SIX_MONTHS;
     }
 
     public setToThreeMonths() {
@@ -110,7 +106,7 @@ export class DashboardChartComponent {
     }
 
     public isThreeMonths() {
-        this.timeScale == TimeScale.THREE_MONTHS;
+        return this.timeScale == TimeScale.THREE_MONTHS;
     }
 }
 
@@ -214,7 +210,7 @@ class CatalogChartData {
     private _labels: string[];
 
     public get viewsCountChartData() {
-        return {data: this._viewsCountData, label: 'Views'};
+        return {data: this._viewsCountData, label: 'Views', tension: 0, backgroundColor: ['black', 'white']};
     }
 
     public get commentsCountChartData() {

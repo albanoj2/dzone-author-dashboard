@@ -3,14 +3,14 @@
     padding-top: 40px;
     display: block;
     margin: auto;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
 }
 
 .author img.avatar {
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
 }
 
 .author .name {
